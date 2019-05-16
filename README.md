@@ -11,9 +11,7 @@ $ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 $ sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
-Install [Arduino](https://www.arduino.cc/en/Guide/Linux)
-
-First download Arduino from https://www.arduino.cc/en/Main/Software
+Install [Arduino](https://www.arduino.cc/en/Guide/Linux). First download Arduino from https://www.arduino.cc/en/Main/Software
 
 ```bash
 $ tar -xvf arduino-1.8.9-linux64.tar.xz
@@ -25,9 +23,7 @@ Change arduino port permissions
 $ sudo chmod a+rw /dev/ttyACM0
 ```
 
-Install Looking Glass driver for Linux
-
-Download the driver from https://github.com/Looking-Glass/ThreeJsDriver/releases/tag/linux
+Install Looking Glass driver for Linux. Download the driver from https://github.com/Looking-Glass/ThreeJsDriver/releases/tag/linux
 
 ```bash
 $ tar -xvfz LKG_ThreeJsDriver_Lin_1.3.0b.tar.gz
