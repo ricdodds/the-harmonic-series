@@ -1,6 +1,6 @@
 # The Harmonic Series at Lalalab
 
-In this repo is hosted the code used [La La Lab](https://imaginary.org/event/la-la-lab-the-mathematics-of-music-at-mains-in-heidelberg) exhibtion.
+In this repo is hosted the code used [La La Lab](https://imaginary.org/event/la-la-lab-the-mathematics-of-music-at-mains-in-heidelberg) exhibtion. This versions uses the [Looking Glass](https://lookingglassfactory.com/) standard size holographic screen. The main visualization is created using [three.js](https://threejs.org/) and the controllers were built using [Arduino](https://www.arduino.cc/)
 
 ## Looking Glass screen in Ubuntu 18.04
 
