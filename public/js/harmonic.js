@@ -14,17 +14,14 @@ var controls, gui;
 var useLookingGlass = true;
 
 const fftSize = 2048 ;
-const minFrequency = 50;
-const maxFrequency = 300;
-const oscillatorGain = 5;
-var micGain = 5;
+const minFrequency = 80;
+const maxFrequency = 1100;
+const oscillatorGain = 6;
+var micGain = 1000;
 
-var startButton = document.getElementById( 'startButton' );
-startButton.addEventListener( 'click', init );
+init();
 
 function init() {
-
-	document.getElementById( 'overlay' ).remove();
 
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
@@ -39,6 +36,7 @@ function init() {
 	camera.position.set( 0, 0, 25 );
 
 	holoplay = new HoloPlay( scene, camera, renderer, new THREE.Vector3(0,0,0), true, true );
+	document.getElementById( 'fullscreen' ).remove();
 
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
 	controls.minDistance = 10;
@@ -48,7 +46,7 @@ function init() {
 	lineMaterial = new THREE.LineMaterial( {
 
 		color: 0xffffff,
-		linewidth: 5, // in pixels
+		linewidth: 7, // in pixels
 		vertexColors: THREE.VertexColors,
 		//resolution:  // to be set by renderer, eventually
 		dashed: false
@@ -107,9 +105,15 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize, false );
 	onWindowResize();
 
-	initGui();
+	var constraints = {
+	  audio: {
+	    echoCancellation: false,
+	    noiseSuppression: false,
+	    autoGainControl: false,
+	  }
+	};
 
-	navigator.mediaDevices.getUserMedia({"audio": "true"})
+	navigator.mediaDevices.getUserMedia(constraints)
 	.then( function( stream ) {
 
 		var mic = audioContext.createMediaStreamSource( stream );
@@ -179,20 +183,24 @@ function onWindowResize() {
 
 function voltageToHz(voltage) {
 
-	return Math.round(minFrequency + (1023 - voltage) / 1023 * maxFrequency);
+	if (voltage < 60)
+		return 0;
+
+	return Math.round(minFrequency + voltage / 1023 * maxFrequency);
 
 }
 
 function initGui() {
 
-	gui = new dat.GUI({ autoPlace: false });
+	gui = new dat.GUI({ autoPlace: false, closeOnTop: false });
 	var customContainer = document.getElementById('gui');
 	customContainer.appendChild(gui.domElement);
+	gui.close();
 
 	var param = {
 		'width (px)': 5,
 		'holographic': false,
-		'mic gain': 5,
+		'mic gain': 5,	
 	};
 
 	gui.add( param, 'width (px)', 1, 10 ).onChange( function ( val ) {

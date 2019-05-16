@@ -13,18 +13,18 @@ app.get('/', function(req, res, next) {
 	res.sendFile(__dirname + '/index.html')
 });
 
-var board = new five.Board();
+var board = new five.Board({ repl: false });
 board.on("ready", function() {
 	console.log('Arduino is ready.');
 
 	var xPotentiometer = new five.Sensor({
 		pin: "A0",
-		freq: 250
+		freq: 25
 	});
 
 	var yPotentiometer = new five.Sensor({
 		pin: "A1",
-		freq: 250
+		freq: 25
 	});
 
 	// Listen to the web socket connection
