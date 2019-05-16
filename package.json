@@ -1,0 +1,18 @@
+{
+  "name": "lalalab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "serialport": "^7.1.5",
+    "express": "^4.16.4",
+    "http-server": "^0.11.1",
+    "johnny-five": "^1.0.0",
+    "socket.io": "^2.2.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "ricdodds",
+  "license": "ISC"
+}
